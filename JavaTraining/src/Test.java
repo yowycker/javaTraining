@@ -1,5 +1,10 @@
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 import convert.ascii.ASCIIConvertor;
 import math.algo.CalculCombi;
@@ -38,12 +43,30 @@ public class Test {
 		
 		System.out.println();
 		
-		// difference entre HashSet, HashMap et LinkedList et Vector
-		// hashcode d'un objet ? si egaux alors objet egaux ?
+		/*difference entre HashSet, HashMap et LinkedList et Vector :
+		 * HashSet : list qui assure aucun doublon (avec equals surement)
+		 * HashMap ne donne aucune garantie quant à l'ordre d'itération. 
+		 	Il peut (et va) même changer complètement lorsque de nouveaux 
+		 	éléments sont ajoutés.
+     	 * TreeMap effectuera une itération en fonction de "l'ordre naturel" 
+     	 	des clés en fonction de leur méthode compareTo () (ou d'un comparateur 
+     	 	fourni en externe). En outre, il implémente l'interface SortedMap, qui 
+     	 	contient des méthodes qui dépendent de cet ordre de tri.
+     	 * LinkedHashMap itérera dans l'ordre dans lequel les entrées ont été placées 
+     	 	dans la carte
+     	 --> VOIR maplist()
+		 */
+		/*hashcode d'un objet
+		 * permet d'identifier l'objet en agglomeration : utilise Equals...
+		 */
 		// Déclarer une classe sans niveau d'accès explicite est en général conseillé
+			// OUI
 		// Le Garbage Collector garanti qu'il y a suffisamment de mémoire pour executer un programme java
+			// NON : gérer la mémoire notamment en libérant celle des objets qui ne sont plus utilisés
+		
+		
 		// pointeurs
-		// operations entre binaires
+		// thread
 		
 	}
 	
@@ -77,6 +100,32 @@ public class Test {
 		System.out.println(conv.convertASCIICodeToChar("201"));
 		System.out.println(conv.convertCharToASCIICode("a"));
 		System.out.println(conv.convertCharToASCIICode("A simple Java program"));
+	}
+	
+	public void maplist(){
+		Map m1 = new HashMap();
+		m1.put("map", "HashMap");
+		m1.put("schildt", "java2");
+		m1.put("mathew", "Hyden");
+		m1.put("schildt", "java2s");
+		System.out.println(m1.keySet()); 
+		System.out.println(m1.values()); 
+
+		SortedMap<String, String> sm = new TreeMap();
+		sm.put("map", "TreeMap");
+		sm.put("schildt", "java2");
+		sm.put("mathew", "Hyden");
+		sm.put("schildt", "java2s");
+		System.out.println(sm.keySet()); 
+		System.out.println(sm.values());
+
+		LinkedHashMap lm = new LinkedHashMap();
+		lm.put("map", "LinkedHashMap");
+		lm.put("schildt", "java2");
+		lm.put("mathew", "Hyden");
+		lm.put("schildt", "java2s");
+		System.out.println(lm.keySet()); 
+		System.out.println(lm.values());
 	}
 	
 }
